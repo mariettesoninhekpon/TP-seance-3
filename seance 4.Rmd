@@ -1,0 +1,61 @@
+---
+title: "seance4"
+author: "Mariette"
+date: "2024-01-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Travail à la maison
+
+## Etape 1 : Importer des données
+
+```{r}
+library(readr)
+gdp5 <- read_csv("https://raw.githubusercontent.com/warint/DPR/main/chapter10/data/chapter10data.csv")
+  
+```
+
+## Etape2 : Créer un graphique linéaire
+
+```{r}
+library(ggplot2)
+library(ggthemes)
+
+ggplot(data = gdp5, aes(x = year, y=gdp, color = country))+
+  geom_line(linewidth = 1.5)+
+  xlab("Years")+
+  ylab("Gross domestic product")+
+  labs(fill = "Countries") +
+  theme_minimal()+
+  scale_colour_brewer(direction = -1)+
+  geom_point(size=2.5)
+
+```
+
+## Etape 3: Sous-ensemble des données
+
+```{r}
+library(dplyr)
+gdp6 <- filter(gdp5, year == 2017)
+```
+
+## Etape 4: Créer un graphique à barres
+
+```{r}
+library(ggplot2)
+library(ggthemes)
+
+ggplot(data=gdp6, aes(x = country, y = gdp, fill = country))+
+  geom_bar(stat = "identity", width = 0.5, position = "dodge")+
+  xlab("")+
+  ylab("Gross domestic product")+
+  labs(fill = "country")+
+  theme_minimal()+
+  scale_fill_brewer(direction = 1)
+```
+
+
